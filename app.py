@@ -13,7 +13,7 @@ def main():
     return render_template("index.html", data=data)
 
 @app.route("/add", methods=["POST"])
-def add_router():
+def add_comment():
     yourname = request.form.get("yourname")
     message = request.form.get("message")
 
