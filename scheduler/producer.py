@@ -1,9 +1,10 @@
 import os
 import pika
 
+rabbitmq_user = os.environ.get("RABBITMQ_DEFAULT_USER")
+rabbitmq_pass = os.environ.get("RABBITMQ_DEFAULT_PASS")
+
 def produce(host, body):
-    rabbitmq_user = os.environ.get("RABBITMQ_DEFAULT_USER")
-    rabbitmq_pass = os.environ.get("RABBITMQ_DEFAULT_PASS")
 
     credentials = pika.PlainCredentials(rabbitmq_user, rabbitmq_pass)
     parameters = pika.ConnectionParameters(host, credentials=credentials)
