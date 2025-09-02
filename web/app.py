@@ -45,7 +45,7 @@ def delete_ip():
 @app.route("/router/<ip>", methods=["GET"])
 def get_router(ip):
     router_details = (
-        interface_status.find({"router_ip": ip}).sort("timestamp", -1).limit(3)
+        interface_status.find({"router_ip": ip}).sort("timestamp", -1).limit(5)
     )
     return render_template(
         "router_details.html", router_ip=ip, router_details=router_details
