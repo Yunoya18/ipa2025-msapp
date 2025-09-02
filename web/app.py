@@ -27,10 +27,7 @@ def add_ip():
     password = request.form.get("password")
 
     if ip and username and password:
-        routers.insert_one({
-            'ip': ip,
-            'username': username,
-            'password': password})
+        routers.insert_one({"ip": ip, "username": username, "password": password})
     return redirect("/")
 
 
@@ -38,7 +35,7 @@ def add_ip():
 def delete_ip():
     try:
         idx = request.form.get("idx")
-        myquery = {'_id': ObjectId(idx)}
+        myquery = {"_id": ObjectId(idx)}
         routers.delete_one(myquery)
     except Exception:
         pass
@@ -47,12 +44,12 @@ def delete_ip():
 
 @app.route("/router/<ip>", methods=["GET"])
 def get_router(ip):
-    router_details = interface_status.find({
-        "router_ip": ip}).sort("timestamp", -1).limit(3)
+    router_details = (
+        interface_status.find({"router_ip": ip}).sort("timestamp", -1).limit(3)
+    )
     return render_template(
-        "router_details.html",
-        router_ip=ip,
-        router_details=router_details)
+        "router_details.html", router_ip=ip, router_details=router_details
+    )
 
 
 if __name__ == "__main__":
