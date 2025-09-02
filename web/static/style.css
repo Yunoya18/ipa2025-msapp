@@ -1,1 +1,4 @@
 body {background: lightsteelblue;}
+table, tr, td, th {
+    border: 3px black solid;
+}
